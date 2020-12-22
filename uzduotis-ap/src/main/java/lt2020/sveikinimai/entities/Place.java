@@ -1,6 +1,7 @@
 package lt2020.sveikinimai.entities;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;

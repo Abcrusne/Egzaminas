@@ -2,12 +2,14 @@ package lt2020.sveikinimai.model;
 
 import java.time.LocalDateTime;
 
+import lt2020.sveikinimai.entities.GreetingType;
+
 public class GreetingFromService {
 
 	private Long id;
 	private String text;
 	private String image;
-	private String type;
+	private GreetingType type;
 	private String firstname;
 	private String lastname;
 	private String title;
@@ -18,7 +20,7 @@ public class GreetingFromService {
 		super();
 	}
 
-	public GreetingFromService(Long id, String text, String image, String type, String firstname, String lastname,
+	public GreetingFromService(Long id, String text, String image, GreetingType type, String firstname, String lastname,
 			String title, LocalDateTime date) {
 		super();
 		this.id = id;
@@ -31,7 +33,7 @@ public class GreetingFromService {
 		this.date = date;
 	}
 
-	public GreetingFromService(Long id, String text, String image, String type, String firstname, String lastname,
+	public GreetingFromService(Long id, String text, String image, GreetingType type, String firstname, String lastname,
 			String title) {
 		super();
 		this.id = id;
@@ -63,7 +65,7 @@ public class GreetingFromService {
 		return image;
 	}
 
-	public String getType() {
+	public GreetingType getType() {
 		return type;
 	}
 
@@ -91,7 +93,7 @@ public class GreetingFromService {
 		this.image = image;
 	}
 
-	public void setType(String type) {
+	public void setType(GreetingType type) {
 		this.type = type;
 	}
 

@@ -70,10 +70,8 @@ const GreetingAdminFormComponent = ({
             <select>
               <option value="grapefruit">TV</option>
               <option value="lime">NET</option>
-              <option selected value="coconut">
-                Coconut
-              </option>
-              <option value="mango">Mango</option>
+
+              <option value="mango">REAL</option>
             </select>
           </div>
         </div>

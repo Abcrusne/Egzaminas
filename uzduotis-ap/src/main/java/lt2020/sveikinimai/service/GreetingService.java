@@ -71,7 +71,7 @@ public class GreetingService {
 
 	@Transactional
 	public void createGreeting(CreateGreetingCommand greeting) {
-		var greeting1 = new Greeting(greeting.getTitle(), greeting.getImage(), greeting.getText(), greeting.getType(),
+		var greeting1 = new Greeting(greeting.getTitle(), greeting.getImage(), greeting.getType(), greeting.getText(),
 				greeting.getFirstname(), greeting.getLastname());
 		var greetingDetails = new GreetingDetails(greeting.getDate());
 		var savedGreetingDetails = greetingDetailsDao.save(greetingDetails);
