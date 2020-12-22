@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
+import lt2020.sveikinimai.entities.GreetingType;
+
 public class CreateGreetingCommand {
 
 	private String title;
@@ -14,7 +16,7 @@ public class CreateGreetingCommand {
 	@Length(min = 3)
 	private String text;
 	private String image;
-	private String type;
+	private GreetingType type;
 	private String firstname;
 	private String lastname;
 
@@ -36,7 +38,7 @@ public class CreateGreetingCommand {
 		return image;
 	}
 
-	public String getType() {
+	public GreetingType getType() {
 		return type;
 	}
 
@@ -68,7 +70,7 @@ public class CreateGreetingCommand {
 		this.image = image;
 	}
 
-	public void setType(String type) {
+	public void setType(GreetingType type) {
 		this.type = type;
 	}
 
