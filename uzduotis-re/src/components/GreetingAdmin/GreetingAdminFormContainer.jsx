@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import myUrl from '../../AppConfig';
-import ProductAdminFormComponent from './GreetingAdminFormComponent';
+import GreetingAdminFormComponent from './GreetingAdminFormComponent';
 
-class ProductAdminFormContainer extends Component {
+class GreetingAdminFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
       image: '',
-      description: '',
-      price: '',
-      quantity: '',
+      text: '',
+      firstname: '',
+      lastname: '',
       id: 0,
     };
   }
@@ -21,15 +21,15 @@ class ProductAdminFormContainer extends Component {
     if (this.props.match.params.id > 0) {
       axios
         //.get('https://itpro2017.herokuapp.com/api/products')
-        .get(`${myUrl}/api/products/${this.props.match.params.id}`)
+        .get(`${myUrl}/api/greetings/${this.props.match.params.id}`)
         .then((res) =>
           this.setState({
             id: res.data.id || '',
             title: res.data.title || '',
-            description: res.data.description || '',
+            text: res.data.text || '',
             image: res.data.image || '',
-            price: res.data.price || '',
-            quantity: res.data.quantity || '',
+            firstname: res.data.firstname || '',
+            lastname: res.data.lastname || '',
           })
         )
         .catch((err) => {
@@ -43,33 +43,33 @@ class ProductAdminFormContainer extends Component {
 
     if (this.state.id > 0) {
       axios
-        .put(`${myUrl}/api/products/${this.state.id}`, {
-          description: this.state.description,
+        .put(`${myUrl}/api/greetings/${this.state.id}`, {
+          text: this.state.text,
           id: this.state.id,
           image: this.state.image,
-          price: this.state.price,
-          quantity: this.state.quantity,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
           title: this.state.title,
         })
-        .then(() => this.props.history.push('/admin/products'));
+        .then(() => this.props.history.push('/admin/greetingss'));
     } else {
       axios
-        .post(`${myUrl}/api/products`, {
-          description: e.target.description.value,
+        .post(`${myUrl}/api/greetings`, {
+          text: e.target.text.value,
           id: this.state.id,
           image: e.target.image.value,
-          price: e.target.price.value,
-          quantity: e.target.quantity.value,
+          firstname: e.target.firstname.value,
+          lastname: e.target.lastname.value,
           title: e.target.title.value,
         })
-        .then(() => this.props.history.push('/admin/products'));
+        .then(() => this.props.history.push('/admin/greetings'));
 
       this.setState({
         title: '',
         image: '',
-        description: '',
-        price: '',
-        quantity: '',
+        text: '',
+        firstname: '',
+        lastname: '',
       });
     }
   };
@@ -81,7 +81,7 @@ class ProductAdminFormContainer extends Component {
 
   render() {
     return (
-      <ProductAdminFormComponent
+      <GreetingAdminFormComponent
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         {...this.state}
@@ -90,4 +90,4 @@ class ProductAdminFormContainer extends Component {
   }
 }
 
-export default withRouter(ProductAdminFormContainer);
+export default withRouter(GreetingAdminFormContainer);

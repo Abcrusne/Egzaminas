@@ -1,11 +1,14 @@
 package lt2020.sveikinimai.entities;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 //@MappedSuperclass
@@ -29,7 +32,10 @@ public class Greeting {
 	@JoinColumn(name = "GreetingDetails_id")
 	private GreetingDetails greetingDetails;
 
-	// rysi User user
+	// rysi User user vietoj firstname ir lastname reiktu
+
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	private Set<Place> place;
 
 	public Greeting() {
 		super();

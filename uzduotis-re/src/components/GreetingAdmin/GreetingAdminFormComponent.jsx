@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ProductAdminFormComponent = ({
+const GreetingAdminFormComponent = ({
   handleChange,
   handleSubmit,
   ...otherProps
 }) => {
-  const { title, image, description, price, quantity } = otherProps;
+  const { title, image, firstname, text, lastname } = otherProps;
   return (
     <div>
       <form className="container my-5" onSubmit={handleSubmit}>
@@ -32,37 +32,37 @@ const ProductAdminFormComponent = ({
           />
         </div>
         <div className="form-group">
-          <label htmlFor="productDescription">Description</label>
+          <label htmlFor="productDescription">Text</label>
           <textarea
             onChange={handleChange}
             className="form-control"
             id="productDescription"
             rows="3"
             name="description"
-            value={description}
+            value={text}
           ></textarea>
         </div>
         <div className="row">
           <div className="form-group col-6">
-            <label htmlFor="productPrice">Price</label>
+            <label htmlFor="productPrice">First Name</label>
             <input
               onChange={handleChange}
               type="text"
               className="form-control"
               id="productPrice"
               name="price"
-              value={price}
+              value={firstname}
             />
           </div>
           <div className="form-group col-6">
-            <label htmlFor="productQuantity">Quantity</label>
+            <label htmlFor="productQuantity">Last Name</label>
             <input
               onChange={handleChange}
               type="text"
               className="form-control"
               id="productQuantity"
               name="quantity"
-              value={quantity}
+              value={lastname}
             />
           </div>
         </div>
@@ -73,4 +73,4 @@ const ProductAdminFormComponent = ({
     </div>
   );
 };
-export default ProductAdminFormComponent;
+export default GreetingAdminFormComponent;
