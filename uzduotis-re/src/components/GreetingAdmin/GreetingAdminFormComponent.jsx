@@ -65,6 +65,17 @@ const GreetingAdminFormComponent = ({
               value={lastname}
             />
           </div>
+          <div className="form-group col-6">
+            <label htmlFor="productQuantity">Select type</label>
+            <select>
+              <option value="grapefruit">TV</option>
+              <option value="lime">NET</option>
+              <option selected value="coconut">
+                Coconut
+              </option>
+              <option value="mango">Mango</option>
+            </select>
+          </div>
         </div>
         <button type="submit" className="btn btn-primary">
           Save

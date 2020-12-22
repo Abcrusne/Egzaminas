@@ -24,9 +24,11 @@ public class Greeting {
 	private String title;
 	private String image;
 	private String text;
-	private String type;
+	private GreetingType type;
 	private String firstname;
 	private String lastname;
+
+	private String audio;
 
 	@OneToOne(cascade = { CascadeType.PERSIST }, orphanRemoval = true)
 	@JoinColumn(name = "GreetingDetails_id")
@@ -41,7 +43,7 @@ public class Greeting {
 		super();
 	}
 
-	public Greeting(String title, String image, String text, String type, String firstname, String lastname,
+	public Greeting(String title, String image, String text, GreetingType type, String firstname, String lastname,
 			GreetingDetails greetingDetails) {
 		super();
 
@@ -54,7 +56,7 @@ public class Greeting {
 		this.greetingDetails = greetingDetails;
 	}
 
-	public Greeting(String title, String image, String text, String type, String firstname, String lastname) {
+	public Greeting(String title, String image, String text, GreetingType type, String firstname, String lastname) {
 
 		super();
 
@@ -74,8 +76,28 @@ public class Greeting {
 		return image;
 	}
 
-	public String getType() {
+	public GreetingType getType() {
 		return type;
+	}
+
+	public String getAudio() {
+		return audio;
+	}
+
+	public Set<Place> getPlace() {
+		return place;
+	}
+
+	public void setType(GreetingType type) {
+		this.type = type;
+	}
+
+	public void setAudio(String audio) {
+		this.audio = audio;
+	}
+
+	public void setPlace(Set<Place> place) {
+		this.place = place;
 	}
 
 	public String getFirstname() {
@@ -92,10 +114,6 @@ public class Greeting {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public void setFirstname(String firstname) {
@@ -171,40 +189,5 @@ public class Greeting {
 	public String toString() {
 		return "Greeting [id=" + id + ", text=" + text + ", greetingDetails=" + greetingDetails + "]";
 	}
-
-//	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.DETACH })
-//	@JoinTable(name = "Product_Cart", joinColumns = @JoinColumn(name = "Product_ID"), inverseJoinColumns = @JoinColumn(name = "Cart_Owner"))
-//	private Set<CartProduct> carts;
-
-//	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-//	private Set<CartItem> cartItems;
-
-	// @MapKey(name = "cartProductsByUsername")
-	// private final Map<String, List<CartProduct>> userProducts = new HashMap<>();
-
-//	public Product() {
-//		super();
-//	}
-//
-//	public Product(String title, BigDecimal price, int quantity) {
-//		super();
-//		this.title = title;
-//		this.price = price;
-//		this.quantity = quantity;
-//		this.cartItems = new HashSet<>();
-//	}
-//
-//	public Product(String title, BigDecimal price, int quantity, ProductDetails productDetails) {
-//		super();
-//		this.title = title;
-//		this.price = price;
-//		this.quantity = quantity;
-//		this.productDetails = productDetails;
-//		this.cartItems = new HashSet<>();
-//	}
-//
-//	public ProductDetails getProductDetails() {
-//		return productDetails;
-//	}
 
 }

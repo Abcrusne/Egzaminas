@@ -23,7 +23,8 @@ public class App extends SpringBootServletInitializer {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("IT Akademij REST Documentation").version("0.0.1-SNAPSHOT").build();
+		return new ApiInfoBuilder().title("IT Akademija REST Documentation sveikinimai 2020").version("0.0.1-SNAPSHOT")
+				.build();
 	}
 
 	public static void main(String[] args) {
