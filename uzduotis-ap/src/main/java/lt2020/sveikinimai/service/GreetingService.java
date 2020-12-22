@@ -3,6 +3,11 @@ package lt2020.sveikinimai.service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +21,7 @@ import lt2020.sveikinimai.model.GreetingFromService;
 
 @Service("greetingService")
 public class GreetingService {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private DBGreetingDao dbGreetingDao;
@@ -23,6 +29,7 @@ public class GreetingService {
 	@Autowired
 	private GreetingDetailsDao greetingDetailsDao;
 
+	@Autowired
 	public GreetingService(DBGreetingDao dbGreetingDao, GreetingDetailsDao greetingDetailsDao) {
 		super();
 		this.dbGreetingDao = dbGreetingDao;
@@ -97,5 +104,14 @@ public class GreetingService {
 //	void deleteById(Long id);
 //
 //	Product findById(Long id);
+	@PostConstruct
+	public void init() {
+		log.info("Bean created, class:  " + getClass().getName() + ". Scope(default value): singleton");
 
+	}
+
+	@PreDestroy
+	public void destroy() {
+		log.info("Bean destroyed, class:  " + getClass().getName() + ". Scope(default value): singleton");
+	}
 }

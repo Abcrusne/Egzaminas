@@ -65,31 +65,4 @@ public class UserService {
 		this.dbUserDao = dbUserDao;
 	}
 
-//	@Autowired
-//	private List<User> users;
-//	@RequestMapping("/findUsersByName")
-//	public User findByFirstnameAndLastname(String firstname, String lastname)
-//
-//	{
-//		for (User user : users)
-//			if (user.getFirstname().equals(firstname) && user.getLastname().equals(lastname)) {
-//				return user;
-//			}
-//		return null;
-	// }
-//
-//	@RequestMapping("/findOldestUser")
-//	public User findOldestUser() {
-//		return Collections.max(users, Comparator.comparingInt(u -> u.getAge()));
-//	}
-//	@RequestMapping(path = "/findUsersByName", method = RequestMethod.GET)
-//	public User findUser(@RequestParam String firstname, @RequestParam String lastname) {
-//		return userService.findByFirstnameAndLastname(firstname, lastname);
-//	}
-//
-//	@RequestMapping(path = "/findOldestUser", method = RequestMethod.GET)
-//	public User findOldestUser() {
-//		return userService.findOldestUser();
-//	}
-
 }

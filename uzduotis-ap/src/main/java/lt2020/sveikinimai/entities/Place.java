@@ -1,6 +1,7 @@
 package lt2020.sveikinimai.entities;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,6 +13,8 @@ public class Place {
 	private String title;
 	private String address;
 	private String image;
+	@Enumerated(EnumType.STRING)
+	private PlaceType placeType;
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH })
 	@JoinColumn(name = "greeting_id")
@@ -21,21 +24,31 @@ public class Place {
 		super();
 	}
 
-	public Place(Long id, String title, String address, String image) {
+	public Place(Long id, String title, String address, String image, PlaceType placeType) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.address = address;
 		this.image = image;
+		this.placeType = placeType;
 	}
 
-	public Place(Long id, String title, String address, String image, Greeting greeting) {
+	public Place(Long id, String title, String address, String image, PlaceType placeType, Greeting greeting) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.address = address;
 		this.image = image;
+		this.placeType = placeType;
 		this.greeting = greeting;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

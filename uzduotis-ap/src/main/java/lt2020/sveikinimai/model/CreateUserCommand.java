@@ -11,11 +11,9 @@ public class CreateUserCommand {
 	private String username;
 
 //	@NotNull
-//	@Length(min = 1, max = 100)
 	private String firstname;
 
 //	@NotNull
-//	@Length(min = 1, max = 100)
 	private String lastname;
 
 //	@NotNull

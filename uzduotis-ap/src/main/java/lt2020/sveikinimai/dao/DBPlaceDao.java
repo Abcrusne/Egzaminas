@@ -32,4 +32,8 @@ public interface DBPlaceDao extends JpaRepository<Place, String>, PlaceDao {
 		this.deleteById(title);
 	}
 
+	default void updateGreeting(Place cmd) {
+		this.save(cmd);
+	}
+
 }
