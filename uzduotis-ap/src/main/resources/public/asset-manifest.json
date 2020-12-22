@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/uzduotis-ap/static/css/main.435d5fe5.chunk.css",
+    "main.js": "/uzduotis-ap/static/js/main.58abdda3.chunk.js",
+    "main.js.map": "/uzduotis-ap/static/js/main.58abdda3.chunk.js.map",
+    "runtime-main.js": "/uzduotis-ap/static/js/runtime-main.9dc7e32b.js",
+    "runtime-main.js.map": "/uzduotis-ap/static/js/runtime-main.9dc7e32b.js.map",
+    "static/css/2.437d98bc.chunk.css": "/uzduotis-ap/static/css/2.437d98bc.chunk.css",
+    "static/js/2.b4528017.chunk.js": "/uzduotis-ap/static/js/2.b4528017.chunk.js",
+    "static/js/2.b4528017.chunk.js.map": "/uzduotis-ap/static/js/2.b4528017.chunk.js.map",
+    "index.html": "/uzduotis-ap/index.html",
+    "precache-manifest.f7691d447b9ab4d3b80575f193d954d4.js": "/uzduotis-ap/precache-manifest.f7691d447b9ab4d3b80575f193d954d4.js",
+    "service-worker.js": "/uzduotis-ap/service-worker.js",
+    "static/css/2.437d98bc.chunk.css.map": "/uzduotis-ap/static/css/2.437d98bc.chunk.css.map",
+    "static/css/main.435d5fe5.chunk.css.map": "/uzduotis-ap/static/css/main.435d5fe5.chunk.css.map",
+    "static/js/2.b4528017.chunk.js.LICENSE.txt": "/uzduotis-ap/static/js/2.b4528017.chunk.js.LICENSE.txt",
+    "static/media/samsung-big.jpg": "/uzduotis-ap/static/media/samsung-big.2c4304b5.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9dc7e32b.js",
+    "static/css/2.437d98bc.chunk.css",
+    "static/js/2.b4528017.chunk.js",
+    "static/css/main.435d5fe5.chunk.css",
+    "static/js/main.58abdda3.chunk.js"
+  ]
+}

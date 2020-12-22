@@ -31,12 +31,12 @@ const NavBar = () => {
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <li className="nav-item active">
-            <NavLink
+            {/* <NavLink
               className="nav-link"
               to={`/users/${currentUser}/cart-products`}
             >
               <CartSummaryContainer />
-            </NavLink>
+            </NavLink> */}
           </li>
         </ul>
       </div>
