@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  <context:annotation-config/>
+  <context:component-scan base-package="lt2020.sveikinimai"/>
+  <!-- bean definitions go here 
+
+ 
+ 	
+ 				<bean id="greeting2" class="lt2020.sveikinimai.entities.Greeting">		
+ 							
+ 					<property name="title" value="BEAN" />		
+ 					<property name="image" value=".jpg" />		
+ 					<property name="text" value="description text descriptiondescription" />		
+ 					<property name="type" value="kazkoks tipas" />		
+ 					<property name="firstname" value="kazkVardas" />
+ 					<property name="lastname" value="kazkPavard" />				
+ 				</bean>	
+ 				<bean id="greeting3" class="lt2020.sveikinimai.entities.Greeting">		
+ 							
+ 					<property name="title" value="BEAN3" />		
+ 					<property name="image" value=".mg" />		
+ 					<property name="text" value="description text description description" />		
+ 					<property name="type" value="kazkoksTipas" />		
+ 					<property name="firstname" value="Vardas" />
+ 					<property name="lastname" value="Pavard" />				
+ 				</bean>		
+ 		  -->
+
+</beans>
