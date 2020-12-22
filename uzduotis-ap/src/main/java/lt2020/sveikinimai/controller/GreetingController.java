@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lt2020.sveikinimai.entities.GreetingType;
 import lt2020.sveikinimai.model.CreateGreetingCommand;
 import lt2020.sveikinimai.model.GreetingFromService;
 import lt2020.sveikinimai.service.GreetingService;
@@ -64,7 +65,7 @@ public class GreetingController {
 
 		String text = cmd.getText();
 		String image = cmd.getImage();
-		String type = cmd.getType();
+		GreetingType type = cmd.getType();
 		String firstname = cmd.getFirstname();
 		String lastname = cmd.getLastname();
 		String title = cmd.getTitle();
