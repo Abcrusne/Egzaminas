@@ -3,96 +3,69 @@ package lt2020.sveikinimai.service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lt2020.sveikinimai.dao.DBGreetingDao;
-import lt2020.sveikinimai.dao.GreetingDetailsDao;
 import lt2020.sveikinimai.entities.Greeting;
-import lt2020.sveikinimai.entities.GreetingDetails;
-import lt2020.sveikinimai.model.CreateGreetingCommand;
 import lt2020.sveikinimai.model.GreetingFromService;
 
 @Service("greetingService")
 public class GreetingService {
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+//	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private DBGreetingDao dbGreetingDao;
 
-	@Autowired
-	private GreetingDetailsDao greetingDetailsDao;
-
-	@Autowired
-	public GreetingService(DBGreetingDao dbGreetingDao, GreetingDetailsDao greetingDetailsDao) {
-		super();
-		this.dbGreetingDao = dbGreetingDao;
-		this.greetingDetailsDao = greetingDetailsDao;
-	}
-
 	public DBGreetingDao getDbGreetingDao() {
 		return dbGreetingDao;
-	}
-
-	public GreetingDetailsDao getGreetingDetailsDao() {
-		return greetingDetailsDao;
 	}
 
 	public void setDbGreetingDao(DBGreetingDao dbGreetingDao) {
 		this.dbGreetingDao = dbGreetingDao;
 	}
 
-	public void setGreetingDetailsDao(GreetingDetailsDao greetingDetailsDao) {
-		this.greetingDetailsDao = greetingDetailsDao;
-	}
-
 	@Transactional(readOnly = true)
 	public Set<GreetingFromService> getGreetings() {
 		return dbGreetingDao.findAll().stream()
-				.map(db -> new GreetingFromService(db.getId(), db.getText(), db.getImage(), db.getType(),
-						db.getFirstname(), db.getLastname(), db.getTitle(), db.getGreetingDetails().getDate()))
+				.map(greeting -> new GreetingFromService(greeting.getId(), greeting.getName(), greeting.getText(),
+						greeting.getImage(), greeting.getAudio(), greeting.getType(), greeting.getDate()))
 				.collect(Collectors.toSet());
 
 	}
 
 	@Transactional
 	public GreetingFromService getGreeting(Long id) {
-		var greeting = dbGreetingDao.getGreeting(id);
-		return new GreetingFromService(greeting.getId(), greeting.getText(), greeting.getImage(), greeting.getType(),
-				greeting.getFirstname(), greeting.getLastname(), greeting.getTitle(),
-				greeting.getGreetingDetails().getDate());
+		var greeting = dbGreetingDao.findById(id).orElse(null);
+		return new GreetingFromService(greeting.getId(), greeting.getName(), greeting.getText(), greeting.getImage(),
+				greeting.getAudio(), greeting.getType(), greeting.getDate());
 	}
 
 	@Transactional
-	public void createGreeting(CreateGreetingCommand greeting) {
-		var greeting1 = new Greeting(greeting.getTitle(), greeting.getImage(), greeting.getText(), greeting.getType(),
-				greeting.getFirstname(), greeting.getLastname());
-		var greetingDetails = new GreetingDetails(greeting.getDate());
-		var savedGreetingDetails = greetingDetailsDao.save(greetingDetails);
-		greeting1.setGreetingDetails(savedGreetingDetails);
+	public void createGreeting(GreetingFromService greeting) {
+
+		var greeting1 = new Greeting(greeting.getName(), greeting.getText(), greeting.getImage(), greeting.getAudio(),
+				greeting.getType(), greeting.getDate());
+
 		dbGreetingDao.save(greeting1);
-		// dbProductDao.createProduct(new Product(product.getTitle(),
-		// product.getPrice(), product.getQuantity(), new
-		// ProductDetails(product.getImage(), product.getDescription())));
 
 	}
 
 	@Transactional
 	public void updateGreeting(GreetingFromService greeting) {
-		var greeting1 = new Greeting(greeting.getTitle(), greeting.getImage(), greeting.getText(), greeting.getType(),
-				greeting.getFirstname(), greeting.getLastname());
-		var greetingDetails = new GreetingDetails(greeting.getDate());
-		greeting1.setId(greeting.getId());
-		greetingDetails.setId(greeting.getId());
-		var savedGreetingDetails = greetingDetailsDao.save(greetingDetails);
-		greeting1.setGreetingDetails(savedGreetingDetails);
-		dbGreetingDao.updateGreeting(greeting1);
+
+		var updatedGreeting = dbGreetingDao.findById(greeting.getId()).orElse(null);
+
+		updatedGreeting.setName(greeting.getName());
+		updatedGreeting.setText(greeting.getText());
+		updatedGreeting.setImage(greeting.getImage());
+		updatedGreeting.setAudio(greeting.getAudio());
+		updatedGreeting.setType(greeting.getType());
+		updatedGreeting.setDate(greeting.getDate());
+
+		dbGreetingDao.save(updatedGreeting);
 
 	}
 
@@ -101,17 +74,30 @@ public class GreetingService {
 		dbGreetingDao.deleteById(id);
 	}
 
+//	@PostConstruct
+//	private void postConstruct() {
+//		Greeting greeting1 = new Greeting();
+//
+//		dbGreetingDao.save(greeting1);
+//
+//	}
+//
+//	@PreDestroy
+//	public void preDestroy() {
+//		dbGreetingDao
+//	}
+
 //	void deleteById(Long id);
 //
 //	Product findById(Long id);
-	@PostConstruct
-	public void init() {
-		log.info("Bean created, class:  " + getClass().getName() + ". Scope(default value): singleton");
-
-	}
-
-	@PreDestroy
-	public void destroy() {
-		log.info("Bean destroyed, class:  " + getClass().getName() + ". Scope(default value): singleton");
-	}
+//	@PostConstruct
+//	public void init() {
+//		log.info("Bean created, class:  " + getClass().getName() + ". Scope(default value): singleton");
+//
+//	}
+//
+//	@PreDestroy
+//	public void destroy() {
+//		log.info("Bean destroyed, class:  " + getClass().getName() + ". Scope(default value): singleton");
+//	}
 }

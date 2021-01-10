@@ -2,17 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import myUrl from '../../AppConfig';
 import GreetingDetailsComponent from './GreetingDetailComponent';
-import ServicesContext from '../../context/ServicesContext';
 
 const GreetingDetailContainer = (props) => {
-  const { userCartService } = useContext(ServicesContext);
-  const [currentUser, setCurrentUser] = useState(
-    userCartService.getCurrentUser()
-  );
   const [greeting, setGreeting] = useState(null);
-
-  userCartService.updateCurrentUser = () =>
-    setCurrentUser(userCartService.getCurrentUser());
 
   useEffect(() => {
     axios
@@ -50,8 +42,6 @@ const GreetingDetailContainer = (props) => {
         <div key={id}>
           <GreetingDetailsComponent
             id={id}
-            currentUser={currentUser}
-            userCartService={userCartService}
             image={image}
             //addToCart={addToCart}
             title={title}

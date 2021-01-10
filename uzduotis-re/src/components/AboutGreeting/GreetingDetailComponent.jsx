@@ -10,7 +10,7 @@ const GreetingDetailsComponent = ({
   text,
   firstname,
   lastname,
-  currentUser,
+  
   // addToCart,
 }) => {
   return (

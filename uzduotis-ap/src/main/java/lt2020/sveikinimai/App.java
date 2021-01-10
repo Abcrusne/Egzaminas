@@ -1,5 +1,7 @@
 package lt2020.sveikinimai;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,6 +18,30 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(App.class, args);
+
+		LOGGER.info("Simple log statement in App.java main class");
+//		
+//		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+//		ctx.register(AppConfig.class);
+//		ctx.refresh();
+//
+//		Greeting g1 = ctx.getBean(Greeting.class);
+//		System.out.println(g1.hashCode());
+//
+//
+//		ctx.close();
+
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(App.class);
+	}
+
 	@Bean
 	public Docket swaggerDocket() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
@@ -23,16 +49,7 @@ public class App extends SpringBootServletInitializer {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("IT Akademija REST Documentation sveikinimai 2020").version("0.0.1-SNAPSHOT")
-				.build();
+		return new ApiInfoBuilder().title("IT Akademija REST Documentation").version("0.0.1-SNAPSHOT").build();
 	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
-	}
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(App.class);
-	}
 }

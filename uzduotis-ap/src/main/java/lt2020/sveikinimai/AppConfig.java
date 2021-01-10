@@ -9,7 +9,8 @@ import org.springframework.context.annotation.ImportResource;
 public class AppConfig {
 
 //	@Bean
-//	public Greeting getGreeting1() {
-//		return new Greeting("Is appConfig", "img", "sv sv sv", TV, "vardas", "pavar");
-//	}
+//	@Scope(value = "singleton")
+//	public Greeting myBean() {
+//		return new Greeting();
+	// }
 }

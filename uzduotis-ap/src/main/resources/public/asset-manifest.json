@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/uzduotis-ap/static/css/main.435d5fe5.chunk.css",
-    "main.js": "/uzduotis-ap/static/js/main.cfbe7dd5.chunk.js",
-    "main.js.map": "/uzduotis-ap/static/js/main.cfbe7dd5.chunk.js.map",
-    "runtime-main.js": "/uzduotis-ap/static/js/runtime-main.9dc7e32b.js",
-    "runtime-main.js.map": "/uzduotis-ap/static/js/runtime-main.9dc7e32b.js.map",
+    "main.css": "/uzduotis-ap/static/css/main.24bf240d.chunk.css",
+    "main.js": "/uzduotis-ap/static/js/main.ddb3ae77.chunk.js",
+    "main.js.map": "/uzduotis-ap/static/js/main.ddb3ae77.chunk.js.map",
+    "runtime-main.js": "/uzduotis-ap/static/js/runtime-main.e5574f5d.js",
+    "runtime-main.js.map": "/uzduotis-ap/static/js/runtime-main.e5574f5d.js.map",
     "static/css/2.437d98bc.chunk.css": "/uzduotis-ap/static/css/2.437d98bc.chunk.css",
-    "static/js/2.b4528017.chunk.js": "/uzduotis-ap/static/js/2.b4528017.chunk.js",
-    "static/js/2.b4528017.chunk.js.map": "/uzduotis-ap/static/js/2.b4528017.chunk.js.map",
+    "static/js/2.c2e504c5.chunk.js": "/uzduotis-ap/static/js/2.c2e504c5.chunk.js",
+    "static/js/2.c2e504c5.chunk.js.map": "/uzduotis-ap/static/js/2.c2e504c5.chunk.js.map",
     "index.html": "/uzduotis-ap/index.html",
-    "precache-manifest.aa82c974cfddd796fc2e5cbd3cb44b5e.js": "/uzduotis-ap/precache-manifest.aa82c974cfddd796fc2e5cbd3cb44b5e.js",
+    "precache-manifest.b66d699abd19b67f473304b6ce7697bf.js": "/uzduotis-ap/precache-manifest.b66d699abd19b67f473304b6ce7697bf.js",
     "service-worker.js": "/uzduotis-ap/service-worker.js",
     "static/css/2.437d98bc.chunk.css.map": "/uzduotis-ap/static/css/2.437d98bc.chunk.css.map",
-    "static/css/main.435d5fe5.chunk.css.map": "/uzduotis-ap/static/css/main.435d5fe5.chunk.css.map",
-    "static/js/2.b4528017.chunk.js.LICENSE.txt": "/uzduotis-ap/static/js/2.b4528017.chunk.js.LICENSE.txt",
-    "static/media/samsung-big.jpg": "/uzduotis-ap/static/media/samsung-big.2c4304b5.jpg"
+    "static/css/main.24bf240d.chunk.css.map": "/uzduotis-ap/static/css/main.24bf240d.chunk.css.map",
+    "static/js/2.c2e504c5.chunk.js.LICENSE.txt": "/uzduotis-ap/static/js/2.c2e504c5.chunk.js.LICENSE.txt",
+    "static/media/img1.png": "/uzduotis-ap/static/media/img1.2af44a38.png",
+    "static/media/img2.jpg": "/uzduotis-ap/static/media/img2.2f849661.jpg",
+    "static/media/img3.jpg": "/uzduotis-ap/static/media/img3.5ae99eaa.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9dc7e32b.js",
+    "static/js/runtime-main.e5574f5d.js",
     "static/css/2.437d98bc.chunk.css",
-    "static/js/2.b4528017.chunk.js",
-    "static/css/main.435d5fe5.chunk.css",
-    "static/js/main.cfbe7dd5.chunk.js"
+    "static/js/2.c2e504c5.chunk.js",
+    "static/css/main.24bf240d.chunk.css",
+    "static/js/main.ddb3ae77.chunk.js"
   ]
 }

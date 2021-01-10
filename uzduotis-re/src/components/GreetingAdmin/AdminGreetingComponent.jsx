@@ -19,7 +19,7 @@ const AdminGreetingComponent = ({ id, image, title, onDelete }) => (
       </td>
       <td>
         <button className="btn btn-danger" onClick={() => onDelete(id)}>
-          Delete greeting
+          Delete item
         </button>
       </td>
     </tr>

@@ -1,15 +1,18 @@
 package lt2020.sveikinimai.entities;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 //@MappedSuperclass
 
@@ -18,143 +21,145 @@ import javax.persistence.OneToOne;
 //@DiscriminatorColumn(name = "Product_Type")
 @Entity
 public class Greeting {
+
+	// private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title;
-	private String image;
+	private String name;
 	private String text;
-	private GreetingType type;
-	private String firstname;
-	private String lastname;
-
+	private String image;
 	private String audio;
 
-	@OneToOne(cascade = { CascadeType.PERSIST }, orphanRemoval = true)
-	@JoinColumn(name = "GreetingDetails_id")
-	private GreetingDetails greetingDetails;
+	@Enumerated(EnumType.STRING)
+	private GreetingType type;
 
-	// rysi User user vietoj firstname ir lastname reiktu
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
-	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-	private Set<Place> place;
+//	@OneToOne(cascade = { CascadeType.PERSIST }, orphanRemoval = true)
+//	@JoinColumn(name = "GreetingDetails_id")
+//	private GreetingDetails greetingDetails;
+
+	@OneToMany(mappedBy = "greeting", cascade = CascadeType.ALL)
+	private Set<GreetingsPlace> greetingPlaces;
 
 	public Greeting() {
 		super();
 	}
 
-	public Greeting(String title, String image, String text, GreetingType type, String firstname, String lastname,
-			GreetingDetails greetingDetails) {
+	public Greeting(String name, String text, String image, String audio, GreetingType type, Date date) {
 		super();
-
-		this.title = title;
-		this.image = image;
+		this.name = name;
 		this.text = text;
-		this.type = type;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.greetingDetails = greetingDetails;
-	}
-
-	public Greeting(String title, String image, String text, GreetingType type, String firstname, String lastname) {
-
-		super();
-
-		this.title = title;
 		this.image = image;
-		this.text = text;
-		this.type = type;
-		this.firstname = firstname;
-		this.lastname = lastname;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public GreetingType getType() {
-		return type;
-	}
-
-	public String getAudio() {
-		return audio;
-	}
-
-	public Set<Place> getPlace() {
-		return place;
-	}
-
-	public void setType(GreetingType type) {
-		this.type = type;
-	}
-
-	public void setAudio(String audio) {
 		this.audio = audio;
+		this.type = type;
+		this.date = date;
 	}
 
-	public void setPlace(Set<Place> place) {
-		this.place = place;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setImage(String image) {
+	public Greeting(String name, String text, String image, String audio, GreetingType type, Date date,
+			Set<GreetingsPlace> greetingPlaces) {
+		super();
+		this.name = name;
+		this.text = text;
 		this.image = image;
+		this.audio = audio;
+		this.type = type;
+		this.date = date;
+		this.greetingPlaces = greetingPlaces;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public Greeting(Long id, String name, String text, String image, String audio, GreetingType type, Date date,
+			Set<GreetingsPlace> greetingPlaces) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.text = text;
+		this.image = image;
+		this.audio = audio;
+		this.type = type;
+		this.date = date;
+		this.greetingPlaces = greetingPlaces;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String getText() {
 		return text;
 	}
 
-	public GreetingDetails getGreetingDetails() {
-		return greetingDetails;
+	public String getImage() {
+		return image;
+	}
+
+	public String getAudio() {
+		return audio;
+	}
+
+	public GreetingType getType() {
+		return type;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public Set<GreetingsPlace> getGreetingPlaces() {
+		return greetingPlaces;
+	}
+
+	public void setGreetingPlaces(Set<GreetingsPlace> greetingPlaces) {
+		this.greetingPlaces = greetingPlaces;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public void setText(String text) {
 		this.text = text;
 	}
 
-	public void setGreetingDetails(GreetingDetails greetingDetails) {
-		this.greetingDetails = greetingDetails;
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public void setAudio(String audio) {
+		this.audio = audio;
+	}
+
+	public void setType(GreetingType type) {
+		this.type = type;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((greetingDetails == null) ? 0 : greetingDetails.hashCode());
+		result = prime * result + ((audio == null) ? 0 : audio.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((greetingPlaces == null) ? 0 : greetingPlaces.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -167,27 +172,64 @@ public class Greeting {
 		if (getClass() != obj.getClass())
 			return false;
 		Greeting other = (Greeting) obj;
-		if (greetingDetails == null) {
-			if (other.greetingDetails != null)
+		if (audio == null) {
+			if (other.audio != null)
 				return false;
-		} else if (!greetingDetails.equals(other.greetingDetails))
+		} else if (!audio.equals(other.audio))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (greetingPlaces == null) {
+			if (other.greetingPlaces != null)
+				return false;
+		} else if (!greetingPlaces.equals(other.greetingPlaces))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (text == null) {
 			if (other.text != null)
 				return false;
 		} else if (!text.equals(other.text))
+			return false;
+		if (type != other.type)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Greeting [id=" + id + ", text=" + text + ", greetingDetails=" + greetingDetails + "]";
+		return "Greeting [id=" + id + ", name=" + name + ", text=" + text + ", image=" + image + ", audio=" + audio
+				+ ", type=" + type + ", date=" + date + ", greetingPlaces=" + greetingPlaces + "]";
 	}
+
+//	@PostConstruct
+//	private void init() {
+//		log.info("Verifying Resources");
+//	}
+//
+//	@PreDestroy
+//	private void shutdown() {
+//		log.info("Shutdown All Resources");
+//	}
+//
+//	public void close() {
+//		log.info("Closing All Resources");
+//	}
 
 }

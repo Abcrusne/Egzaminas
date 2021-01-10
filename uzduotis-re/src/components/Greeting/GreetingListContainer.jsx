@@ -11,29 +11,36 @@ class GreetingListContainer extends Component {
     super(props);
     this.state = {
       greetings: {},
+      searchQuery: '',
     };
   }
 
   componentDidMount() {
     axios
       .get(`${myUrl}/api/greetings?title=`)
-      .then((greetings) => {
-        this.setState({ greetings });
+      .then((res) => {
+        this.setState({ greetings: res.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  handleChange = (e) => {
-    e.preventDefault();
-    axios
-      .get(`${myUrl}/api/greetings?title=${e.target.value}`)
-      .then((greetings) => {
-        this.setState({ greetings: greetings });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // handleChange = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .get(`${myUrl}/api/greetings?title=${e.target.value}`)
+  //     .then((res) => {
+  //       this.setState({ greetings: res.data });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  handleSearch = (e) => {
+    const name = e.currentTarget.value;
+    console.log(name);
+
+    this.setState({ searchQuery: name });
   };
 
   render() {
@@ -43,7 +50,10 @@ class GreetingListContainer extends Component {
       return (
         <div className="container mt-4">
           <div className="row">
-            <SearchBar onChange={this.handleChange} />
+            <SearchBar
+              value={this.state.searchQuery}
+              onChange={this.handleSearch}
+            />
           </div>
           <div className="row d-flex justify-content-center">
             {data.map(({ id, ...otherProps }) => (

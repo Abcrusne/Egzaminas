@@ -4,6 +4,7 @@ import lt2020.sveikinimai.entities.Greeting;
 import lt2020.sveikinimai.entities.PlaceType;
 
 public class PlaceFromService {
+
 	private Long id;
 
 	private String title;
@@ -16,6 +17,23 @@ public class PlaceFromService {
 		super();
 	}
 
+	public PlaceFromService(String title, String address, String image, PlaceType placeType) {
+		super();
+		this.title = title;
+		this.address = address;
+		this.image = image;
+		this.placeType = placeType;
+	}
+
+	public PlaceFromService(String title, String address, String image, PlaceType placeType, Greeting greeting) {
+		super();
+		this.title = title;
+		this.address = address;
+		this.image = image;
+		this.placeType = placeType;
+		this.greeting = greeting;
+	}
+
 	public PlaceFromService(Long id, String title, String address, String image, PlaceType placeType,
 			Greeting greeting) {
 		super();
@@ -25,6 +43,16 @@ public class PlaceFromService {
 		this.image = image;
 		this.placeType = placeType;
 		this.greeting = greeting;
+	}
+
+	public PlaceFromService(Long id, String title, String address, String image, PlaceType placeType) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.address = address;
+		this.image = image;
+		this.placeType = placeType;
+
 	}
 
 	public Long getId() {

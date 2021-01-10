@@ -1,55 +1,54 @@
 package lt2020.sveikinimai.entities;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "place")
 public class Place {
 
-	private Long id;
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
+
+	@Column(unique = true)
 	private String title;
+
 	private String address;
 	private String image;
+
 	@Enumerated(EnumType.STRING)
 	private PlaceType placeType;
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH })
-	@JoinColumn(name = "greeting_id")
-	private Greeting greeting;
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	@OrderBy(value = "name asc")
+	private Set<GreetingsPlace> greetingPlaces;
 
 	public Place() {
 		super();
 	}
 
-	public Place(Long id, String title, String address, String image, PlaceType placeType) {
+	public Place(String title, String address, String image, PlaceType placeType) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.address = address;
 		this.image = image;
 		this.placeType = placeType;
-	}
-
-	public Place(Long id, String title, String address, String image, PlaceType placeType, Greeting greeting) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.address = address;
-		this.image = image;
-		this.placeType = placeType;
-		this.greeting = greeting;
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTitle() {
@@ -64,8 +63,16 @@ public class Place {
 		return image;
 	}
 
-	public Greeting getGreeting() {
-		return greeting;
+	public PlaceType getPlaceType() {
+		return placeType;
+	}
+
+	public Set<GreetingsPlace> getGreetingPlaces() {
+		return greetingPlaces;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setTitle(String title) {
@@ -80,8 +87,12 @@ public class Place {
 		this.image = image;
 	}
 
-	public void setGreeting(Greeting greeting) {
-		this.greeting = greeting;
+	public void setPlaceType(PlaceType placeType) {
+		this.placeType = placeType;
+	}
+
+	public void setGreetingPlaces(Set<GreetingsPlace> greetingPlaces) {
+		this.greetingPlaces = greetingPlaces;
 	}
 
 	@Override
@@ -89,8 +100,10 @@ public class Place {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((greeting == null) ? 0 : greeting.hashCode());
+		result = prime * result + ((greetingPlaces == null) ? 0 : greetingPlaces.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((placeType == null) ? 0 : placeType.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -109,15 +122,22 @@ public class Place {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (greeting == null) {
-			if (other.greeting != null)
+		if (greetingPlaces == null) {
+			if (other.greetingPlaces != null)
 				return false;
-		} else if (!greeting.equals(other.greeting))
+		} else if (!greetingPlaces.equals(other.greetingPlaces))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (image == null) {
 			if (other.image != null)
 				return false;
 		} else if (!image.equals(other.image))
+			return false;
+		if (placeType != other.placeType)
 			return false;
 		if (title == null) {
 			if (other.title != null)

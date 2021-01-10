@@ -1,5 +1,6 @@
 package lt2020.sveikinimai.controller;
 
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,53 +34,53 @@ public class GreetingController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get greetingss", notes = "Returns all greetingss")
+	@ApiOperation(value = "Get greetings", notes = "Returns all greetings")
 	public Set<GreetingFromService> getGreetings() {
-//		return productService.getProducts().stream()
-//				.map(productIsServiso -> new ProductFromService(productIsServiso.getTitle(),
-//						productIsServiso.getImage(), productIsServiso.getDescription(), productIsServiso.getPrice(),
-//						productIsServiso.getQuantity(),
-//						productIsServiso.getId()))
-//				.collect(Collectors.toSet());
 		return greetingService.getGreetings();
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{greetingId}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get greeting", notes = "Returns greeting with specified id")
-	public GreetingFromService getGreetingt(@PathVariable final Long id) {
-		return greetingService.getGreeting(id);
+	public GreetingFromService getGreeting(@PathVariable final Long greetingId) {
+		return greetingService.getGreeting(greetingId);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create greeting", notes = "Creates new greeting")
-	public void createProduct(@RequestBody final CreateGreetingCommand cmd) {
-		greetingService.createGreeting(cmd);
-
+	public Set<GreetingFromService> createGreeting(@RequestBody final CreateGreetingCommand cmd) {
+		greetingService.createGreeting(new GreetingFromService(cmd.getName(), cmd.getText(), cmd.getImage(),
+				cmd.getAudio(), cmd.getType(), cmd.getDate()));
+		return greetingService.getGreetings();
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(path = "/{greetingId}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ApiOperation(value = "Update greeting", notes = "Updates greeting with specified id")
-	public void updateGreeting(@PathVariable Long id, @RequestBody CreateGreetingCommand cmd) {
+	public void updateGreeting(@PathVariable final Long greetingId, @RequestBody CreateGreetingCommand cmd) {
 
+		String name = cmd.getName();
 		String text = cmd.getText();
 		String image = cmd.getImage();
+		String audio = cmd.getAudio();
 		GreetingType type = cmd.getType();
-		String firstname = cmd.getFirstname();
-		String lastname = cmd.getLastname();
-		String title = cmd.getTitle();
+		Date date = cmd.getDate();
 
-		var greeting = new GreetingFromService(id, text, image, type, firstname, lastname, title);
+		var greeting = new GreetingFromService(greetingId, name, text, image, audio, type, date);
 		greetingService.updateGreeting(greeting);
 
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/{greetingId}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete greeting ", notes = "Deletes greeting with specified id")
-	public void deleteGreeting(@PathVariable final Long id) {
-		greetingService.deleteGreeting(id);
+	public void deleteGreeting(@PathVariable final Long greetingId) {
+		greetingService.deleteGreeting(greetingId);
 	}
+
+//	@RequestMapping(path = "/test", method = RequestMethod.GET)
+//	public String forTestPurposes() {
+//		return "Hello";
+//	}
 
 }

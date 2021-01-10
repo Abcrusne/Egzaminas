@@ -17,8 +17,8 @@ class AdminListContainer extends Component {
   componentDidMount() {
     axios
       .get(`${myUrl}/api/greetings`)
-      .then((greeting) => {
-        this.setState({ greetings: greeting });
+      .then((response) => {
+        this.setState({ greetings: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -28,7 +28,7 @@ class AdminListContainer extends Component {
     axios
       .delete(`${myUrl}/api/greetings/${id}`)
       .then((response) => {
-        this.setState({ greeting: response.data });
+        this.setState({ greetings: response.data });
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +49,7 @@ class AdminListContainer extends Component {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Image</th>
-                <th scope="col">Title</th>
+                <th scope="col">Name</th>
                 <th scope="col"> </th>
               </tr>
             </thead>

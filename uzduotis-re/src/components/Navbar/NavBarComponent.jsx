@@ -1,16 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ServicesContext from '../../context/ServicesContext';
-import CartSummaryContainer from '../Cart/CartSummaryContainer';
-import LoginContainer from '../Login/LoginContainer';
 
 const NavBar = () => {
-  const { userCartService } = useContext(ServicesContext);
-  const [currentUser, setCurrentUser] = useState(
-    userCartService.getCurrentUser()
-  );
-  userCartService.updateCurrentUser = () =>
-    setCurrentUser(userCartService.getCurrentUser());
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -24,9 +15,6 @@ const NavBar = () => {
             <NavLink className="nav-link" to={`/admin/greetings`}>
               Admin
             </NavLink>
-          </li>
-          <li>
-            <LoginContainer />
           </li>
         </ul>
         <ul className="nav navbar-nav navbar-right">

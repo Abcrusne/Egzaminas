@@ -5,19 +5,19 @@ const GreetingAdminFormComponent = ({
   handleSubmit,
   ...otherProps
 }) => {
-  const { title, image, firstname, text, lastname } = otherProps;
+  const { audio, image, name, text, date, type } = otherProps;
   return (
     <div>
       <form className="container my-5" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="productTitle">Title</label>
+          <label htmlFor="productTitle">Audio</label>
           <input
             onChange={handleChange}
             type="text"
             className="form-control"
             id="productTitle"
             name="title"
-            value={title}
+            value={audio}
           />
         </div>
         <div className="form-group">
@@ -44,34 +44,33 @@ const GreetingAdminFormComponent = ({
         </div>
         <div className="row">
           <div className="form-group col-6">
-            <label htmlFor="productPrice">First Name</label>
+            <label htmlFor="productPrice"> Name</label>
             <input
               onChange={handleChange}
               type="text"
               className="form-control"
               id="productPrice"
               name="price"
-              value={firstname}
+              value={name}
             />
           </div>
           <div className="form-group col-6">
-            <label htmlFor="productQuantity">Last Name</label>
+            <label htmlFor="productQuantity">Date</label>
             <input
               onChange={handleChange}
-              type="text"
+              type="date"
               className="form-control"
               id="productQuantity"
               name="quantity"
-              value={lastname}
+              value={date}
             />
           </div>
           <div className="form-group col-6">
             <label htmlFor="productQuantity">Select type</label>
             <select>
-              <option value="grapefruit">TV</option>
-              <option value="lime">NET</option>
-
-              <option value="mango">REAL</option>
+              <option value={type}>TV</option>
+              <option value={type}>ONLINE</option>
+              <option value={type}>REAL</option>
             </select>
           </div>
         </div>

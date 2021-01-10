@@ -8,11 +8,12 @@ class GreetingAdminFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      audio: '',
       image: '',
+      name: '',
       text: '',
-      firstname: '',
-      lastname: '',
+      date: '',
+      type: '',
       id: 0,
     };
   }
@@ -20,16 +21,16 @@ class GreetingAdminFormContainer extends Component {
   componentDidMount() {
     if (this.props.match.params.id > 0) {
       axios
-        //.get('https://itpro2017.herokuapp.com/api/products')
+
         .get(`${myUrl}/api/greetings/${this.props.match.params.id}`)
         .then((res) =>
           this.setState({
             id: res.data.id || '',
-            title: res.data.title || '',
+            audio: res.data.audio || '',
             text: res.data.text || '',
             image: res.data.image || '',
-            firstname: res.data.firstname || '',
-            lastname: res.data.lastname || '',
+            date: res.data.date || '',
+            type: res.data.type || '',
           })
         )
         .catch((err) => {
@@ -47,29 +48,32 @@ class GreetingAdminFormContainer extends Component {
           text: this.state.text,
           id: this.state.id,
           image: this.state.image,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          title: this.state.title,
+          name: this.state.name,
+          audio: this.state.audio,
+          type: this.state.type,
+          date: this.state.date,
         })
-        .then(() => this.props.history.push('/admin/greetingss'));
+        .then(() => this.props.history.push('/admin/greetings'));
     } else {
       axios
         .post(`${myUrl}/api/greetings`, {
           text: e.target.text.value,
           id: this.state.id,
           image: e.target.image.value,
-          firstname: e.target.firstname.value,
-          lastname: e.target.lastname.value,
-          title: e.target.title.value,
+          name: e.target.name.value,
+          audio: e.target.audio.value,
+          type: e.target.type.value,
+          date: e.target.type.value,
         })
         .then(() => this.props.history.push('/admin/greetings'));
 
       this.setState({
-        title: '',
+        audio: '',
         image: '',
+        name: '',
         text: '',
-        firstname: '',
-        lastname: '',
+        date: '',
+        type: '',
       });
     }
   };

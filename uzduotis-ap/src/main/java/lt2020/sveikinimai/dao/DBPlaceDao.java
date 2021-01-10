@@ -1,39 +1,18 @@
 package lt2020.sveikinimai.dao;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import lt2020.sveikinimai.entities.Place;
 
-public interface DBPlaceDao extends JpaRepository<Place, String>, PlaceDao {
-	default Set<Place> getPlace() {
+public interface DBPlaceDao extends JpaRepository<Place, Long> {
 
-		return (Set<Place>) this.findAll();
+	@Query("select p from Place p where p.title like %?1%")
+	List<Place> findByTitleFragment(String title);
 
-	}
-
-	default Place getPlace(String title) {
-
-		return this.findById(title).orElse(null);
-
-	}
-
-	default void createPlace(Place place) {
-		this.save(place);
-
-	}
-
-	default void updatePlace(Place place) {
-		this.save(place);
-	}
-
-	default void deletePlace(String title) {
-		this.deleteById(title);
-	}
-
-	default void updateGreeting(Place cmd) {
-		this.save(cmd);
-	}
+	@Query("select p from Place p order by p.title asc")
+	List<Place> findAll();
 
 }

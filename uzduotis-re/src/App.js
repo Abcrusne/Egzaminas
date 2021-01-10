@@ -9,7 +9,7 @@ import GreetingListContainer from './components/Greeting/GreetingListContainer';
 import GreetingDetailContainer from './components/AboutGreeting/GreetingDetailContainer';
 import GreetingAdminFormContainer from './components/GreetingAdmin/GreetingAdminFormContainer';
 import AdminListContainer from './components/GreetingAdmin/GreetingListContainer';
-import CartContainer from './components/Cart/CartContainer';
+
 import NoMatch from './components/NoMatch/NoMatch';
 // import KazkasListContainer
 // import KazkasDetailContainer

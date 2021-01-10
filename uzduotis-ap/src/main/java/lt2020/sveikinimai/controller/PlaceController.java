@@ -14,8 +14,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import lt2020.sveikinimai.entities.Place;
+import lt2020.sveikinimai.entities.PlaceType;
 import lt2020.sveikinimai.model.CreatePlaceCommand;
+import lt2020.sveikinimai.model.PlaceFromService;
 import lt2020.sveikinimai.service.PlaceService;
 
 @RestController
@@ -26,38 +27,57 @@ public class PlaceController {
 	@Autowired
 	private PlaceService placeService;
 
-	@Autowired
-	public PlaceController(PlaceService placeService) {
-		super();
+	public PlaceService getPlaceService() {
+		return placeService;
+	}
+
+	public void setPlaceService(PlaceService placeService) {
 		this.placeService = placeService;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get place", notes = "Returns all places")
-	public Set<Place> getPlace() {
+	public Set<PlaceFromService> getPlaces() {
 
-		return placeService.getPlace();
+		return placeService.getPlaces();
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get address by ID", notes = "Returns a single place by ID")
-	public Place getPlace(@PathVariable String title) {
-		return placeService.getPlace(title);
+	public PlaceFromService getPlace(@PathVariable final Long id) {
+		return placeService.getPlace(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create place", notes = "Creates new place")
 	public void createPlace(@RequestBody final CreatePlaceCommand cmd) {
-		placeService.createPlace(cmd);
+		placeService.createPlace(new PlaceFromService(cmd.getTitle(), cmd.getAddress(), cmd.getImage(),
+				cmd.getPlaceType(), cmd.getGreeting()));
+
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete place", notes = "deletes places by id")
-	public void deletePlace(@ApiParam(value = "place id", required = true) @PathVariable final String title) {
+	public void deletePlace(@ApiParam(value = "place id", required = true) @PathVariable final Long id) {
 
-		placeService.deletePlace(title);
+		placeService.deletePlace(id);
 
 	}
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ApiOperation(value = "Update place", notes = "Updates place with specified id")
+	public void updatePlace(@PathVariable Long id, @RequestBody CreatePlaceCommand cmd) {
+
+		String title = cmd.getTitle();
+		String address = cmd.getAddress();
+		String image = cmd.getImage();
+		PlaceType pt = cmd.getPlaceType();
+
+		var place = new PlaceFromService(id, title, address, image, pt);
+		placeService.updatePlace(place, id);
+	}
+
 }

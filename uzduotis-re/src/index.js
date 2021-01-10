@@ -5,21 +5,19 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import ServicesContext from './context/ServicesContext';
-import UserCartService from './service/UserService';
+// import ServicesContext from './context/ServicesContext';
+// import UserCartService from './service/UserService';
 
 import App from './App';
 
 document.title = 'E-shop';
 
-const userCartService = new UserCartService();
+// const userCartService = new UserCartService();
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <ServicesContext.Provider value={{ userCartService }}>
-        <App />
-      </ServicesContext.Provider>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

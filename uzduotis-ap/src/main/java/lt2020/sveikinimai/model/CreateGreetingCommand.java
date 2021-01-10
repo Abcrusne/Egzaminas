@@ -1,33 +1,43 @@
 package lt2020.sveikinimai.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
-import org.hibernate.validator.constraints.Length;
-
-import com.sun.istack.NotNull;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lt2020.sveikinimai.entities.GreetingType;
 
 public class CreateGreetingCommand {
 
-	private String title;
-
-	@NotNull
-	@Length(min = 3)
+	private String name;
 	private String text;
 	private String image;
+	private String audio;
+
+	@Enumerated(EnumType.STRING)
 	private GreetingType type;
-	private String firstname;
-	private String lastname;
 
-	private LocalDateTime date;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
-//	public Long getId() {
-//		return id;
-//	}
+	public CreateGreetingCommand() {
+		super();
+	}
 
-	public String getTitle() {
-		return title;
+	public CreateGreetingCommand(String name, String text, String image, String audio, GreetingType type, Date date) {
+		super();
+		this.name = name;
+		this.text = text;
+		this.image = image;
+		this.audio = audio;
+		this.type = type;
+		this.date = date;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public String getText() {
@@ -38,28 +48,20 @@ public class CreateGreetingCommand {
 		return image;
 	}
 
+	public String getAudio() {
+		return audio;
+	}
+
 	public GreetingType getType() {
 		return type;
 	}
 
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setText(String text) {
@@ -70,19 +72,15 @@ public class CreateGreetingCommand {
 		this.image = image;
 	}
 
+	public void setAudio(String audio) {
+		this.audio = audio;
+	}
+
 	public void setType(GreetingType type) {
 		this.type = type;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
